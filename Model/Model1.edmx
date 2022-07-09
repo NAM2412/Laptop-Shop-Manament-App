@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QUANLYCUAHANGLAPTOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MAHD" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MASP" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="SOLUONGSP" Type="int" />
+          <Property Name="TONGGIASP" Type="money" />
+        </EntityType>
+        <EntityType Name="EMAIL">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TIEUDE" Type="nvarchar" MaxLength="35" />
+          <Property Name="NOIDUNG" Type="nvarchar" MaxLength="130" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="NGAYHD" Type="datetime" />
+          <Property Name="MAKH" Type="varchar" MaxLength="4" />
+          <Property Name="MANV" Type="varchar" MaxLength="4" />
+          <Property Name="TONGSL" Type="int" />
+          <Property Name="TONGTIEN" Type="money" />
+          <Property Name="MAKM" Type="varchar" MaxLength="4" />
+          <Property Name="SOTIENKM" Type="money" />
+          <Property Name="SOTIENPHAITRA" Type="money" />
+          <Property Name="TINHTRANG" Type="bit" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENKH" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TAIKHOANKH" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NGAYSINH" Type="date" Nullable="false" />
+          <Property Name="SOCMND" Type="char" MaxLength="20" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYDANGKY" Type="date" />
+          <Property Name="DOANHSO" Type="money" />
+          <Property Name="SOLUONGSANPHAM" Type="int" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="KHUYENMAI">
+          <Key>
+            <PropertyRef Name="MAKM" />
+          </Key>
+          <Property Name="MAKM" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENKM" Type="nvarchar" MaxLength="100" />
+          <Property Name="PHANTRAMKM" Type="float" />
+          <Property Name="NGAYBATDAU" Type="datetime" />
+          <Property Name="NGAYKETTHUC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LOAISP">
+          <Key>
+            <PropertyRef Name="MALOAI" />
+          </Key>
+          <Property Name="MALOAI" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENLOAI" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TAIKHOAN" />
+          </Key>
+          <Property Name="TAIKHOAN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LOAIND" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENNV" Type="nvarchar" MaxLength="100" />
+          <Property Name="TAIKHOANNV" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="CMND" Type="char" MaxLength="20" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYVAOLAM" Type="date" />
+          <Property Name="LUONG" Type="money" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="NHASX">
+          <Key>
+            <PropertyRef Name="MANSX" />
+          </Key>
+          <Property Name="MANSX" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENNSX" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENSP" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SLBDAU" Type="int" />
+          <Property Name="SLBAN" Type="int" />
+          <Property Name="GIAGOC" Type="money" />
+          <Property Name="GIABAN" Type="money" />
+          <Property Name="MOTA" Type="nvarchar" MaxLength="400" />
+          <Property Name="NGAYNHAP" Type="datetime" />
+          <Property Name="MALOAI" Type="varchar" MaxLength="4" />
+          <Property Name="MANSX" Type="varchar" MaxLength="4" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_MAHD">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKM">
+          <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHUYENMAI">
+              <PropertyRef Name="MAKM" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKH">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKH_EMAIL">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+          <End Role="EMAIL" Type="Self.EMAIL" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="EMAIL">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MALOAI">
+          <End Role="LOAISP" Type="Self.LOAISP" Multiplicity="0..1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAISP">
+              <PropertyRef Name="MALOAI" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MALOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSX">
+          <End Role="NHASX" Type="Self.NHASX" Multiplicity="0..1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHASX">
+              <PropertyRef Name="MANSX" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MANSX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANKH_TAIKHOAN">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TAIKHOAN" />
+            </Principal>
+            <Dependent Role="KHACHHANG">
+              <PropertyRef Name="TAIKHOANKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANNV_TAIKHOAN">
+          <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TAIKHOAN" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="TAIKHOANNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYCUAHANGLAPTOPModelStoreContainer">
+          <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMAIL" EntityType="Self.EMAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAISP" EntityType="Self.LOAISP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHASX" EntityType="Self.NHASX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MAHD" Association="Self.FK_MAHD">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKM" Association="Self.FK_MAKM">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKH" Association="Self.FK_MAKH">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKH_EMAIL" Association="Self.FK_MAKH_EMAIL">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="EMAIL" EntitySet="EMAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MALOAI" Association="Self.FK_MALOAI">
+            <End Role="LOAISP" EntitySet="LOAISP" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSX" Association="Self.FK_MANSX">
+            <End Role="NHASX" EntitySet="NHASX" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANV" Association="Self.FK_MANV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASP" Association="Self.FK_MASP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="Self.FK_TAIKHOANKH_TAIKHOAN">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANNV_TAIKHOAN" Association="Self.FK_TAIKHOANNV_TAIKHOAN">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYCUAHANGLAPTOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QUANLYCUAHANGLAPTOPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHITIETHOADON" EntityType="QUANLYCUAHANGLAPTOPModel.CHITIETHOADON" />
+          <EntitySet Name="EMAIL" EntityType="QUANLYCUAHANGLAPTOPModel.EMAIL" />
+          <EntitySet Name="HOADON" EntityType="QUANLYCUAHANGLAPTOPModel.HOADON" />
+          <EntitySet Name="KHACHHANG" EntityType="QUANLYCUAHANGLAPTOPModel.KHACHHANG" />
+          <EntitySet Name="KHUYENMAI" EntityType="QUANLYCUAHANGLAPTOPModel.KHUYENMAI" />
+          <EntitySet Name="LOAISP" EntityType="QUANLYCUAHANGLAPTOPModel.LOAISP" />
+          <EntitySet Name="NGUOIDUNG" EntityType="QUANLYCUAHANGLAPTOPModel.NGUOIDUNG" />
+          <EntitySet Name="NHANVIEN" EntityType="QUANLYCUAHANGLAPTOPModel.NHANVIEN" />
+          <EntitySet Name="NHASX" EntityType="QUANLYCUAHANGLAPTOPModel.NHASX" />
+          <EntitySet Name="SANPHAM" EntityType="QUANLYCUAHANGLAPTOPModel.SANPHAM" />
+          <AssociationSet Name="FK_MAHD" Association="QUANLYCUAHANGLAPTOPModel.FK_MAHD">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASP" Association="QUANLYCUAHANGLAPTOPModel.FK_MASP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKH_EMAIL" Association="QUANLYCUAHANGLAPTOPModel.FK_MAKH_EMAIL">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="EMAIL" EntitySet="EMAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKM" Association="QUANLYCUAHANGLAPTOPModel.FK_MAKM">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKH" Association="QUANLYCUAHANGLAPTOPModel.FK_MAKH">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANV" Association="QUANLYCUAHANGLAPTOPModel.FK_MANV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANKH_TAIKHOAN">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MALOAI" Association="QUANLYCUAHANGLAPTOPModel.FK_MALOAI">
+            <End Role="LOAISP" EntitySet="LOAISP" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANNV_TAIKHOAN" Association="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANNV_TAIKHOAN">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSX" Association="QUANLYCUAHANGLAPTOPModel.FK_MANSX">
+            <End Role="NHASX" EntitySet="NHASX" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MAHD" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MASP" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUONGSP" Type="Int32" />
+          <Property Name="TONGGIASP" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAHD" FromRole="CHITIETHOADON" ToRole="HOADON" />
+          <NavigationProperty Name="SANPHAM" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MASP" FromRole="CHITIETHOADON" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="EMAIL">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TIEUDE" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="130" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHACHHANG" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKH_EMAIL" FromRole="EMAIL" ToRole="KHACHHANG" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYHD" Type="DateTime" Precision="3" />
+          <Property Name="MAKH" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MANV" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TONGSL" Type="Int32" />
+          <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MAKM" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SOTIENKM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SOTIENPHAITRA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TINHTRANG" Type="Boolean" />
+          <NavigationProperty Name="CHITIETHOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAHD" FromRole="HOADON" ToRole="CHITIETHOADON" />
+          <NavigationProperty Name="KHUYENMAI" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKM" FromRole="HOADON" ToRole="KHUYENMAI" />
+          <NavigationProperty Name="KHACHHANG" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKH" FromRole="HOADON" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MANV" FromRole="HOADON" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENKH" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TAIKHOANKH" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SOCMND" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYDANGKY" Type="DateTime" Precision="0" />
+          <Property Name="DOANHSO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SOLUONGSANPHAM" Type="Int32" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EMAIL" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKH_EMAIL" FromRole="KHACHHANG" ToRole="EMAIL" />
+          <NavigationProperty Name="HOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKH" FromRole="KHACHHANG" ToRole="HOADON" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANKH_TAIKHOAN" FromRole="KHACHHANG" ToRole="NGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="KHUYENMAI">
+          <Key>
+            <PropertyRef Name="MAKM" />
+          </Key>
+          <Property Name="MAKM" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENKM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PHANTRAMKM" Type="Double" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="3" />
+          <Property Name="NGAYKETTHUC" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MAKM" FromRole="KHUYENMAI" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="LOAISP">
+          <Key>
+            <PropertyRef Name="MALOAI" />
+          </Key>
+          <Property Name="MALOAI" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENLOAI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SANPHAM" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MALOAI" FromRole="LOAISP" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="NGUOIDUNG">
+          <Key>
+            <PropertyRef Name="TAIKHOAN" />
+          </Key>
+          <Property Name="TAIKHOAN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MATKHAU" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LOAIND" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANKH_TAIKHOAN" FromRole="NGUOIDUNG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANNV_TAIKHOAN" FromRole="NGUOIDUNG" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENNV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TAIKHOANNV" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYVAOLAM" Type="DateTime" Precision="0" />
+          <Property Name="LUONG" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="HOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MANV" FromRole="NHANVIEN" ToRole="HOADON" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANNV_TAIKHOAN" FromRole="NHANVIEN" ToRole="NGUOIDUNG" />
+        </EntityType>
+        <EntityType Name="NHASX">
+          <Key>
+            <PropertyRef Name="MANSX" />
+          </Key>
+          <Property Name="MANSX" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENNSX" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SANPHAM" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MANSX" FromRole="NHASX" ToRole="SANPHAM" />
+        </EntityType>
+        <EntityType Name="SANPHAM">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TENSP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SLBDAU" Type="Int32" />
+          <Property Name="SLBAN" Type="Int32" />
+          <Property Name="GIAGOC" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GIABAN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MOTA" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYNHAP" Type="DateTime" Precision="3" />
+          <Property Name="MALOAI" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MANSX" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CHITIETHOADON" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MASP" FromRole="SANPHAM" ToRole="CHITIETHOADON" />
+          <NavigationProperty Name="LOAISP" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MALOAI" FromRole="SANPHAM" ToRole="LOAISP" />
+          <NavigationProperty Name="NHASX" Relationship="QUANLYCUAHANGLAPTOPModel.FK_MANSX" FromRole="SANPHAM" ToRole="NHASX" />
+        </EntityType>
+        <Association Name="FK_MAHD">
+          <End Type="QUANLYCUAHANGLAPTOPModel.HOADON" Role="HOADON" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASP">
+          <End Type="QUANLYCUAHANGLAPTOPModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKH_EMAIL">
+          <End Type="QUANLYCUAHANGLAPTOPModel.KHACHHANG" Role="KHACHHANG" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.EMAIL" Role="EMAIL" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="EMAIL">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKM">
+          <End Type="QUANLYCUAHANGLAPTOPModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="0..1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHUYENMAI">
+              <PropertyRef Name="MAKM" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKH">
+          <End Type="QUANLYCUAHANGLAPTOPModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANV">
+          <End Type="QUANLYCUAHANGLAPTOPModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANKH_TAIKHOAN">
+          <End Type="QUANLYCUAHANGLAPTOPModel.NGUOIDUNG" Role="NGUOIDUNG" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.KHACHHANG" Role="KHACHHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TAIKHOAN" />
+            </Principal>
+            <Dependent Role="KHACHHANG">
+              <PropertyRef Name="TAIKHOANKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MALOAI">
+          <End Type="QUANLYCUAHANGLAPTOPModel.LOAISP" Role="LOAISP" Multiplicity="0..1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAISP">
+              <PropertyRef Name="MALOAI" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MALOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANNV_TAIKHOAN">
+          <End Type="QUANLYCUAHANGLAPTOPModel.NGUOIDUNG" Role="NGUOIDUNG" Multiplicity="1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.NHANVIEN" Role="NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="TAIKHOAN" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="TAIKHOANNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSX">
+          <End Type="QUANLYCUAHANGLAPTOPModel.NHASX" Role="NHASX" Multiplicity="0..1" />
+          <End Type="QUANLYCUAHANGLAPTOPModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHASX">
+              <PropertyRef Name="MANSX" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MANSX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYCUAHANGLAPTOPModelStoreContainer" CdmEntityContainer="QUANLYCUAHANGLAPTOPEntities">
+          <EntitySetMapping Name="CHITIETHOADON">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.CHITIETHOADON">
+              <MappingFragment StoreEntitySet="CHITIETHOADON">
+                <ScalarProperty Name="TONGGIASP" ColumnName="TONGGIASP" />
+                <ScalarProperty Name="SOLUONGSP" ColumnName="SOLUONGSP" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMAIL">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.EMAIL">
+              <MappingFragment StoreEntitySet="EMAIL">
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="TIEUDE" ColumnName="TIEUDE" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADON">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="SOTIENPHAITRA" ColumnName="SOTIENPHAITRA" />
+                <ScalarProperty Name="SOTIENKM" ColumnName="SOTIENKM" />
+                <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="TONGSL" ColumnName="TONGSL" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="NGAYHD" ColumnName="NGAYHD" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANG">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="SOLUONGSANPHAM" ColumnName="SOLUONGSANPHAM" />
+                <ScalarProperty Name="DOANHSO" ColumnName="DOANHSO" />
+                <ScalarProperty Name="NGAYDANGKY" ColumnName="NGAYDANGKY" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="SOCMND" ColumnName="SOCMND" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="TAIKHOANKH" ColumnName="TAIKHOANKH" />
+                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHUYENMAI">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.KHUYENMAI">
+              <MappingFragment StoreEntitySet="KHUYENMAI">
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+                <ScalarProperty Name="TENKM" ColumnName="TENKM" />
+                <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAISP">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.LOAISP">
+              <MappingFragment StoreEntitySet="LOAISP">
+                <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
+                <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOIDUNG">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.NGUOIDUNG">
+              <MappingFragment StoreEntitySet="NGUOIDUNG">
+                <ScalarProperty Name="LOAIND" ColumnName="LOAIND" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="TAIKHOAN" ColumnName="TAIKHOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIEN">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+                <ScalarProperty Name="NGAYVAOLAM" ColumnName="NGAYVAOLAM" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="TAIKHOANNV" ColumnName="TAIKHOANNV" />
+                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHASX">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.NHASX">
+              <MappingFragment StoreEntitySet="NHASX">
+                <ScalarProperty Name="TENNSX" ColumnName="TENNSX" />
+                <ScalarProperty Name="MANSX" ColumnName="MANSX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANPHAM">
+            <EntityTypeMapping TypeName="QUANLYCUAHANGLAPTOPModel.SANPHAM">
+              <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="MANSX" ColumnName="MANSX" />
+                <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
+                <ScalarProperty Name="NGAYNHAP" ColumnName="NGAYNHAP" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+                <ScalarProperty Name="GIAGOC" ColumnName="GIAGOC" />
+                <ScalarProperty Name="SLBAN" ColumnName="SLBAN" />
+                <ScalarProperty Name="SLBDAU" ColumnName="SLBDAU" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,273 @@
+﻿<Window x:Class="QuanLyCuaHangDienTu.View.Admin.EditEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu.View.Admin"
+        mc:Ignorable="d"
+        Name="editemployeewindow"
+        Title="CẬP NHẬT THÔNG TIN NHÂN VIÊN"
+        Height="450"
+        Width="800"
+        xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource WinAll}"
+        FontSize="14" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        DataContext="{StaticResource EditEmployeeVM}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="../../ResourceXAML/IMG/Admin/Background.jpg" />
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarWindow Tag="{Binding Title, ElementName=editemployeewindow}" Height="40" VerticalAlignment="Bottom">
+                </uc:ControlBarWindow>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBox x:Name="txtTenNV"
+                             VerticalAlignment="Top"
+                             Margin="30,50,30,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="HỌ VÀ TÊN"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             Text="{Binding TENNV, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Label Name="lbHoTen"
+                           VerticalAlignment="Top"
+                           Margin="30,90,30,0"
+                           FontSize="10"
+                           Foreground="Red"
+                           FontStyle="Italic"
+                           Content="{Binding lbHOTEN}"></Label>
+
+                    <Label FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="30,0,30,150"
+                           Foreground="Black">NGÀY SINH
+                    </Label>
+                    <DatePicker x:Name="txtNgaySinhNV"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Margin="30,0,30,100"
+                                materialDesign:HintAssist.Hint="DAY/MONTH/YEAR"
+                                materialDesign:CalendarAssist.IsHeaderVisible="False"
+                                FontStyle="Italic"
+                                SelectedDate="{Binding NGAYSINH, UpdateSourceTrigger=PropertyChanged}">
+                    </DatePicker>
+
+                    <TextBox x:Name="txtDiaChiNV"
+                             VerticalAlignment="Center"
+                             Margin="30,0,30,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="ĐỊA CHỈ"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             Text="{Binding DIACHI, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox x:Name="txtSoCMNDNV"
+                             VerticalAlignment="Center"
+                             Margin="30,130,30,0"
+                             MaxLength="20"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="SỐ CMND"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             PreviewTextInput="txtSoCMNDNV_PreviewTextInput"
+                             Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox x:Name="txtTaiKhoanNV"
+                             VerticalAlignment="Bottom"
+                             Margin="30,0,30,50"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="TÀI KHOẢN"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             Text="{Binding TAIKHOANNV, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="False">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <!--<PasswordBox x:Name="pwbPass"
+                                 VerticalAlignment="Bottom"
+                                 Margin="30,0,30,40"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox }"
+                                 materialDesign:HintAssist.Hint="MẬT KHẨU"
+                                 materialDesign:HintAssist.HintOpacity="1">
+                        <PasswordBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </PasswordBox.Resources>
+                    </PasswordBox>-->
+
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Label x:Name="lbSex"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Margin="30,0,30,150"
+                           Foreground="Black">GIỚI TÍNH
+                    </Label>
+                    <ComboBox x:Name="cbSex"
+                              VerticalAlignment="Center"
+                              Margin="30,0,30,100"
+                              SelectedIndex="0"
+                              Text="{Binding GIOITINH, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Content="Nam" />
+                        <ComboBoxItem Content="Nữ" />
+                        <ComboBoxItem Content="Khác" />
+                    </ComboBox>
+
+                    <TextBox x:Name="txtMaNV"
+                             VerticalAlignment="Top"
+                             Margin="30,50,30,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="MÃ NHÂN VIÊN"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             Text="{Binding MANV, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="False">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox x:Name="txtSDTNV"
+                             VerticalAlignment="Center"
+                             Margin="30,0,30,0"
+                             MaxLength="20"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="SỐ ĐIỆN THOẠI"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             PreviewTextInput="txtSDTNV_PreviewTextInput"
+                             Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <TextBox x:Name="txtLuongNV"
+                             VerticalAlignment="Center"
+                             Margin="30,130,30,0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.Hint="LƯƠNG"
+                             materialDesign:HintAssist.HintOpacity="1"
+                             PreviewTextInput="txtLuongNV_PreviewTextInput"
+                             Text="{Binding LUONG, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
+                                        Value="Bold" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <!--<PasswordBox x:Name="pwbRepass"
+                                 VerticalAlignment="Bottom"
+                                 Margin="30,0,30,40"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox }"
+                                 materialDesign:HintAssist.Hint="NHẬP LẠI MẬT KHẨU"
+                                 materialDesign:HintAssist.HintOpacity="1">
+                        <PasswordBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"                                       
+                                        Value="Bold" />
+                            </Style>
+                        </PasswordBox.Resources>
+                    </PasswordBox>-->
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Button x:Name="btnImgNV"
+                            VerticalAlignment="Top"
+                            materialDesign:ButtonAssist.CornerRadius="20"
+                            Width="170"
+                            Height="230"
+                            ToolTip="Avatar"
+                            Margin="30,40,30,0"
+                            Click="btnImgNV_Click">
+                        <Button.Background  >
+                            <ImageBrush x:Name="imgNV" />
+                        </Button.Background>
+                    </Button>
+
+                    <Button Style="{StaticResource MyGreenButtonStyle}"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Height="50"
+                            Width="130"
+                            Margin="20,20,10,40"
+                            Command="{Binding SaveNVCommand}"
+                            Click="Button_Click">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="AccountMultipleCheck"
+                                                     Height="30"
+                                                     Width="30" />
+                            <TextBlock Text="Lưu"
+                                       FontSize="20"
+                                       HorizontalAlignment="Right"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"></TextBlock>
+                        </DockPanel>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

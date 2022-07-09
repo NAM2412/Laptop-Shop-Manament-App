@@ -1,0 +1,319 @@
+﻿<Page x:Class="QuanLyCuaHangDienTu.View.Customer.ListProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:QuanLyCuaHangDienTu.View.Customer"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Name="listproductpage"
+      Title="DANH SÁCH SẢN PHẨM"
+      Style="{StaticResource PageAll}">
+
+    <!--Reference của hàm chuyển đổi giá cho List View-->
+    <Page.Resources>
+        <local:PriceConverter x:Key="PriceConverter" />
+    </Page.Resources>
+    <Border CornerRadius="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="0.14*"></RowDefinition>
+                <RowDefinition Height="1.6*"></RowDefinition>
+                <RowDefinition Height="0.16*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel>
+
+                <Button x:Name="btBackward"
+                        Width="33"
+                        Height="33"
+                        Margin="45,0,0,0"
+                        ToolTip="Backward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseBack}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                    <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Foreground="#FF09308E">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform Angle="180" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                </Button>
+
+                <Button x:Name="btForward"
+                        Width="33"
+                        Height="33"
+                        Margin="15,0,0,0"
+                        ToolTip="Forward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseForward}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        FlowDirection="RightToLeft">
+                    <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             Foreground="#FF09308E" />
+                </Button>
+            </DockPanel>
+
+            <Label FontFamily="Sitka Subheading"
+                   FontSize="25"
+                   FontWeight="DemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   HorizontalContentAlignment="Center"
+                   Foreground="#FF351C75"
+                   Content="{Binding Title, RelativeSource={RelativeSource AncestorType=Page}}"></Label>
+
+            <WrapPanel Grid.Row="1">
+                <TextBox x:Name="tbSearch"
+                         Width="200"
+                         Margin="50,5,0,0"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         materialDesign:HintAssist.Hint="Tìm kiếm sản phẩm"
+                         TextChanged="tbSearch_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type materialDesign:SmartHint}">
+                            <Setter Property="FontStyle"
+                                    Value="Italic" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <ComboBox x:Name="cbSort"
+                          Width="200"
+                          Margin="50,5,0,0"
+                          SelectedIndex="0"
+                          MaxDropDownHeight="200"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          SelectionChanged="cbPage_SelectionChanged"
+                          DropDownOpened="ComboProductTypes_DropDownOpened"
+                          DropDownClosed="ComboProductTypes_DropDownClosed">
+                    <ComboBoxItem Content="Nhập kho gần đây nhất" />
+                    <ComboBoxItem Content="Nhập kho lâu nhất" />
+                    <ComboBoxItem Content="Giá tăng dần" />
+                    <ComboBoxItem Content="Giá giảm dần" />
+                    <ComboBoxItem Content="Tồn kho nhiều nhất" />
+                    <ComboBoxItem Content="Tồn kho ít nhất" />
+                    <ComboBoxItem Content="Bán chạy nhất" />
+                    <ComboBoxItem Content="Bán ít nhất" />
+
+                </ComboBox>
+
+                <ComboBox x:Name="cbType"
+                          Width="180"
+                          Margin="50,5,0,0"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          materialDesign:HintAssist.Hint="Loại laptop"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          SelectionChanged="cbType_SelectionChanged"
+                          DropDownOpened="ComboProductTypes_DropDownOpened"
+                          DropDownClosed="ComboProductTypes_DropDownClosed">
+                    <ComboBoxItem Content="Laptop gaming" />
+                    <ComboBoxItem Content="Laptop văn phòng " />
+                </ComboBox>
+
+                <ComboBox x:Name="cbProducer"
+                          Width="150"
+                          Margin="50,5,0,0"
+                          MaxDropDownHeight="200"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          materialDesign:HintAssist.Hint="Hãng laptop"
+                          materialDesign:TextFieldAssist.HasClearButton="True"
+                          SelectionChanged="cbProducer_SelectionChanged"
+                          DropDownOpened="ComboProductTypes_DropDownOpened"
+                          DropDownClosed="ComboProductTypes_DropDownClosed">
+                    <ComboBoxItem Content="Laptop Acer" />
+                    <ComboBoxItem Content="Laptop Asus" />
+                    <ComboBoxItem Content="Laptop Dell" />
+                    <ComboBoxItem Content="Laptop Lenovo" />
+                    <ComboBoxItem Content="Laptop HP" />
+                    <ComboBoxItem Content="Laptop MSI" />
+                    <ComboBoxItem Content="Laptop Apple" />
+                    <ComboBoxItem Content="Laptop Razer" />
+
+                </ComboBox>
+
+                <ComboBox x:Name="cbPage"
+                          Width="50"
+                          Margin="50,5,0,5"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          FontWeight="Bold"
+                          FontStyle="Italic"
+                          SelectionChanged="cbPage_SelectionChanged"
+                          DropDownOpened="ComboProductTypes_DropDownOpened"
+                          DropDownClosed="ComboProductTypes_DropDownClosed">
+                </ComboBox>
+                <StackPanel />
+            </WrapPanel>
+
+            <ListView Grid.Row="2"
+                      Name="listProduct"
+                      Margin="2,0,2,0"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
+                      PreviewMouseLeftButtonUp="listProduct_PreviewMouseLeftButtonUp">
+                <!--PreviewMouseLeftButtonUp="ListProduct_PreviewMouseLeftButtonUp"-->
+                <!--Thiết lập cấu trúc sắp xếp các phần tử ListView-->
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5"
+                                     Rows="2">
+                        </UniformGrid>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <!--Template hiển thị một sản phẩm-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Border Height="180"
+                                    Width="180"
+                                    CornerRadius="10"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Center">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="{StaticResource ThemeColorDarker}"
+                                                      Direction="270"
+                                                      ShadowDepth="1"
+                                                      BlurRadius="10" />
+                                </Border.Effect>
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding Path=IMG}"
+                                                Stretch="UniformToFill" />
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Path=TENSP}"
+                                       MaxWidth="190"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Margin="0,5,0,0"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="Sitka Subheading"
+                                       Foreground="{StaticResource Black1}"
+                                       FontSize="16"
+                                       FontWeight="Bold" />
+                            <TextBlock Text="{Binding Path=GIABAN, Converter={StaticResource PriceConverter}}"
+                                       HorizontalAlignment="Center"
+                                       Background="{StaticResource Primary}"
+                                       Foreground="White"
+                                       FontSize="16">
+                                   <Bold><Underline>đ</Underline></Bold>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Label x:Name="lbNoti"
+                   Grid.Row="2"    
+                   FontSize="22"
+                   Content="Sản phẩm cần tìm hiện không có."
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{StaticResource ErrorColorBrush}"
+                   Visibility="Hidden">
+                
+            </Label>
+            <!--Progressbar loading-->
+            <ProgressBar Width="25"
+                         Height="25"
+                         Margin="310,0,0,0"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"
+                         x:Name="ProgressBar">
+                <ProgressBar.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Value"
+                                                 From="0"
+                                                 To="100"
+                                                 Duration="0:0:1"
+                                                 RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+
+            <Button x:Name="btLeft"
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    Width="35"
+                    Height="35"
+                    Margin="0,0,60,0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    ToolTip="Trang trước"
+                    Background="Transparent"
+                    BorderBrush="Black"
+                    Click="btLeft_Click">
+                <materialDesign:PackIcon Kind="KeyboardArrowLeft"
+                                         Height="20"
+                                         Width="20" />
+            </Button>
+
+            <Button x:Name="btRight"
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    Width="35"
+                    Height="35"
+                    Margin="60,0,0,0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    ToolTip="Trang sau"
+                    Background="Transparent"
+                    BorderBrush="Black"
+                    Click="btRight_Click">
+                <materialDesign:PackIcon Kind="KeyboardArrowRight"
+                                         Height="20"
+                                         Width="20" />
+            </Button>
+            <Button x:Name="btMail"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    ToolTip="Feedback Box"
+                    materialDesign:ButtonAssist.CornerRadius="25,0,25,0"
+                    Grid.Row="3"
+                    Height="45"
+                    Width="65"
+                    BorderBrush="{x:Null}"
+                    FlowDirection="RightToLeft"
+                    Click="btMail_Click">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0"
+                                         EndPoint="1,0.5">
+                        <GradientStop Color="#fbc2eb" />
+                        <GradientStop Color="#FF8CD0F3"
+                                      Offset="1" />
+                        <GradientStop Color="#d2ccc4"
+                                      Offset="0.51" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <materialDesign:PackIcon Kind="EmailOutline"
+                                         Height="33"
+                                         Width="33"
+                                         Foreground="Black" />
+            </Button>
+        </Grid>
+    </Border>
+</Page>
+

@@ -1,0 +1,61 @@
+﻿<Window x:Class="QuanLyCuaHangDienTu.View.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Name="dashboardwindow"
+        Title="EEE"
+        Height="650"
+        Width="1100"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WinAll}"
+        Loaded="dashboardwindow_Loaded">
+
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="/ResourceXAML/IMG/all/Background.png" />
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="12*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <uc:ControlBarAE Grid.Row="0" 
+                              Tag="{Binding Title, ElementName=dashboardwindow}"/>
+            <materialDesign:PopupBox Grid.Row="0"
+                        Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+                        PlacementMode="BottomAndAlignLeftEdges"
+                        UnfurlOrientation="Vertical"
+                        ToolTip="EEE"
+                        Margin="25,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" Height="40" Width="40" BorderBrush="Transparent" Foreground="Transparent">
+                <materialDesign:PopupBox.Background>
+                    <ImageBrush ImageSource="/ResourceXAML/IMG/All/LogoWindow.png" Stretch="Uniform"/>
+                </materialDesign:PopupBox.Background>
+                <StackPanel Orientation="Vertical">
+                    <Button ToolTip="Menu" Click="BtnMenu_Click">
+                        <materialDesign:PackIcon Kind="Backburger" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button ToolTip="Đăng xuất"
+                            Click="BtnLogout_Click">
+                        <materialDesign:PackIcon Kind="ExitToApp" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
+            <DockPanel Grid.Row="1">
+                <Frame x:Name="_mainFrame"
+                       NavigationUIVisibility="Hidden" />
+            </DockPanel>
+        </Grid>
+        
+    </Border>
+</Window>

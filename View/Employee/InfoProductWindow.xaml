@@ -1,0 +1,106 @@
+﻿<Window x:Class="QuanLyCuaHangDienTu.View.Employee.InfoProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu.View.Employee"
+        mc:Ignorable="d"
+        Name="infbill"
+        Title="THÔNG TIN SẢN PHẨM" Height="400" Width="770"
+        
+         xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource WinAll}"
+        FontSize="14" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="../../ResourceXAML/IMG/Admin/Background.jpg"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarWindow Tag="{Binding Title, ElementName=infbill}" Height="40" VerticalAlignment="Bottom">
+                </uc:ControlBarWindow>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"  Margin="30,30,20,30">
+                    <Label Margin="20,10,0,0" FontSize="14" FontWeight="Bold">
+                        MÃ SẢN PHẨM
+                    </Label>
+                    <Label Name="lbMaSP" Margin="20,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="20,10,0,0" FontSize="14" FontWeight="Bold">
+                        HÃNG SẢN XUẤT
+                    </Label>
+                    <Label Name="lbHangSX" Margin="20,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="20,10,0,0" FontSize="14" FontWeight="Bold">
+                        LOẠI SẢN PHẨM
+                    </Label>
+                    <Label Name="lbLoaiSP" Margin="20,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="20,10,0,0" FontSize="14" FontWeight="Bold">
+                        SỐ LƯỢNG TỒN
+                    </Label>
+                    <Label Name="lbSLTonSP" Margin="20,0,0,10" FontSize="14">
+                    </Label>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="20,30,10,0">
+                    <Label Margin="20,10,0,0" FontSize="14" FontWeight="Bold">
+                        TÊN SẢN PHẨM
+                    </Label>
+                    <Label Name="lbTenSP" Margin="20,0,0,10" FontSize="14">
+                    </Label>
+                    <Border Grid.Row="0"
+                            VerticalAlignment="Top"
+                            CornerRadius="20"
+                            ToolTip="Avatar"
+                            Width="200"
+                            Height="200"
+                            Margin="0,30,0,0">
+                        <Border.Background>
+                            <ImageBrush x:Name="imgSP"/>
+                        </Border.Background>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Margin="30,30,20,0">
+                    <Label Margin="0,10,0,0" FontSize="14" FontWeight="Bold">
+                        GIÁ GỐC
+                    </Label>
+                    <Label Name="lbGiaGocSP" Margin="0,0,0,0" FontSize="14">
+                    </Label>
+                    <Label Margin="0,10,0,0" FontSize="14" FontWeight="Bold">
+                        GIÁ BÁN
+                    </Label>
+                    <Label Name="lbGiaBanSP" Margin="0,0,0,0" FontSize="14">
+                    </Label>
+                    <Label Margin="0,10,0,0" FontSize="14" FontWeight="Bold">
+                        MÔ TẢ
+                    </Label>
+                    <Label Name="lbMoTaSP" Margin="0,0,0,0" FontSize="14">
+                    </Label>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

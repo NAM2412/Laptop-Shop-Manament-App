@@ -1,0 +1,108 @@
+﻿<Page x:Class="QuanLyCuaHangDienTu.View.Employee.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+      xmlns:local="clr-namespace:QuanLyCuaHangDienTu"
+      mc:Ignorable="d" 
+      Name="mainwindow"
+      Title="TRANG CHỦ"
+
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"            
+      DataContext="{StaticResource MainVM}">
+
+    <Border CornerRadius="25">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btBackward"
+                        Width="33"
+                        Height="33"
+                        Margin="45,0,0,0"
+                        ToolTip="Backward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseBack}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Foreground="#FF09308E">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="180" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                    </Button>
+
+                    <Button x:Name="btForward"
+                        Width="33"
+                        Height="33"
+                        Margin="15,0,0,0"
+                        ToolTip="Forward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseForward}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        FlowDirection="RightToLeft">
+                        <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             Foreground="#FF09308E" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Button
+                            Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                            materialDesign:ButtonAssist.CornerRadius="70"
+                            ToolTip="Danh Sách Sản Phẩm"
+                            Height="230"
+                            Width="230"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="30,0,0,0"
+                            Click="Button_Click">
+                        <Image Source="../../ResourceXAML/IMG/Employee/Product.png"/>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Button
+                        Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                        materialDesign:ButtonAssist.CornerRadius="70"
+                        ToolTip="Danh Sách Hóa Đơn"
+                        Height="230"
+                        Width="230"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,0,30,0"
+                        Command="{Binding BillCommand}"
+                        Click="BtnBill_Click">
+                        <Image Source="../../ResourceXAML/IMG/Employee/Bill.png"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

@@ -1,0 +1,374 @@
+﻿<Page x:Class="QuanLyCuaHangDienTu.View.Customer.CartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:QuanLyCuaHangDienTu.View.Customer"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Name="cartpage"
+      Title="GIỎ HÀNG"
+      Style="{StaticResource PageAll}"
+      Loaded="cartpage_Loaded">
+
+    <!--Reference của hàm chuyển đổi STT và $ cho List View-->
+    <Page.Resources>
+        <local:DataConverter x:Key="IndexConverter" />
+        <local:PriceConverter x:Key="PriceConverter" />
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Grid.ColumnSpan="3"
+               FontFamily="Sitka Subheading"
+               FontSize="25"
+               FontWeight="DemiBold"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               HorizontalContentAlignment="Center"
+               Foreground="#FF351C75"
+               Content="{Binding Title, RelativeSource={RelativeSource AncestorType=Page}}">
+        </Label>
+
+        <Label x:Name="lbNoti"
+               FontSize="18"
+               Foreground="Black"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"></Label>
+
+        <!--Danh sách giỏ hàng-->
+        <ListView Name="listCart"
+                  Grid.Row="1"
+                  FontSize="16"
+                  Margin="30,-5,30,0"
+                  Foreground="Black"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch">
+            
+            <!--Thiết kế các cột-->
+            <ListView.View>
+                <GridView>
+
+                    <!--Cột Checkbox-->
+                    <GridViewColumn Width="40">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <CheckBox x:Name="cbProduct"
+                                              IsChecked="{Binding IsChecked}"
+                                              Checked="cbProduct_Checked"
+                                              Unchecked="cbProduct_Unchecked" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!--Cột STT-->
+                    <GridViewColumn Width="100"
+                                    DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource IndexConverter}}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="-20,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Label Content="STT"
+                                           Padding="1"
+                                           FontSize="18"
+                                           Foreground="Black"
+                                           FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+
+
+                    <!--Cột ảnh sản phẩm-->
+                    <GridViewColumn Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Margin="-20,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Image Source="{Binding Path=IMG}"></Image>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <!--Cột tên sản phẩm-->
+                    <GridViewColumn Width="250"
+                                    DisplayMemberBinding="{Binding TENSP}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="-40,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Label Content="Sản phẩm"
+                                           Padding="1"
+                                           FontSize="18"
+                                           Foreground="Black"
+                                           FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+
+
+                    <!--Cột đơn giá-->
+                    <GridViewColumn Width="150"
+                                    DisplayMemberBinding="{Binding GIABAN, Converter={StaticResource PriceConverter}}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="-20,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Label Content="Đơn giá"
+                                           Padding="1"
+                                           FontSize="18"
+                                           Foreground="Black"
+                                           FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+
+
+                    <!--Cột số lượng-->
+                    <GridViewColumn Width="175">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="30,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Label Content="SL"
+                                           Padding="1"
+                                           FontSize="18"
+                                           Foreground="Black"
+                                           FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <Button x:Name="btMinus"
+                                            Width="50"
+                                            FontSize="16"
+                                            Foreground="Black"
+                                            DockPanel.Dock="Left"
+                                            Style="{StaticResource MaterialDesignFlatLightButton}"
+                                            Click="btMinus_Click">
+                                        -
+                                    </Button>
+                                    <Label x:Name="lbSl"
+                                           Content="{Binding SOLUONG }"
+                                           Margin="10,0,10,0"
+                                           FontSize="16">
+                                    </Label>
+                                    <Button x:Name="btPlus"
+                                            Width="50"
+                                            FontSize="16"
+                                            Foreground="Black"
+                                            DockPanel.Dock="Right"
+                                            Style="{StaticResource MaterialDesignFlatLightButton}"
+                                            Click="btPlus_Click">
+                                        +
+                                    </Button>
+                                </DockPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <!--Cột giá trị-->
+                    <GridViewColumn Width="120"
+                                    DisplayMemberBinding="{Binding THANHTIEN, Converter={StaticResource PriceConverter}}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Border Margin="-20,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="White"
+                                                          Direction="270"
+                                                          ShadowDepth="1"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                    <Label Content="Giá trị "
+                                           Padding="1"
+                                           FontSize="18"
+                                           Foreground="Black"
+                                           FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!--Progressbar loading-->
+        <ProgressBar Width="25"
+                     Height="25"
+                     Style="{StaticResource MaterialDesignCircularProgressBar}"
+                     x:Name="ProgressBar">
+            <ProgressBar.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Value"
+                                             From="0"
+                                             To="100"
+                                             Duration="0:0:1"
+                                             RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ProgressBar.Triggers>
+        </ProgressBar>
+
+        <StackPanel Grid.Row="2"
+                    Margin="20,10,20,0">
+            <DockPanel>
+                <Label Margin="30,0,0,0"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="#DDFB1313">
+                    Khuyến mãi áp dụng
+                </Label>
+
+                <DockPanel Margin="400,0,0,0">
+                    <Label FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#DDFB1313">
+                        Tổng SL:
+                    </Label>
+                    <Label x:Name="lbTotalProducts"
+                           FontSize="20">
+                        xx
+                    </Label>
+                    <Label FontSize="20"
+                           FontWeight="Bold"
+                           Margin="35,0,0,0"
+                           Foreground="#DDFB1313">
+                        Tổng giá trị:
+                    </Label>
+                    <Label x:Name="lbTotalPrice"
+                           FontSize="20">
+                        xx.xxx.xxx
+                    </Label>
+                    <Label FontSize="20">
+                        <Bold>
+                            <Underline>đ</Underline>
+                        </Bold>
+                    </Label>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel Margin="0,5,0,0">
+                <Label Content="Tên sự kiện:" />
+                <Label x:Name="lbName"
+                       Content="xxxxx xxx x" />
+
+                <Label Margin="80,0,0,0"
+                       Content="Giảm giá (%):" />
+                <Label x:Name="lbPercent"
+                       Content="xx" />
+
+                <Label Margin="80,0,0,0"
+                       Content="Ngày bắt đầu:" />
+                <Label x:Name="lbDateStart"
+                       Content="xx/xx/xxxx" />
+
+                <Label Margin="80,0,0,0"
+                       Content="Ngày kết thúc:" />
+                <Label x:Name="lbDateEnd"
+                       Content="xx/xx/xxxx" />
+            </DockPanel>
+            <DockPanel Margin="10,10,0,0"
+                       x:Name="dpDetail">
+                <CheckBox x:Name="cbCheck"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding IsChecked}"
+                          Checked="cbCheck_Checked"
+                          Unchecked="cbCheck_Unchecked" />
+                <Label FontSize="20"
+                       VerticalAlignment="Center">Chọn tất cả</Label>
+                <Label x:Name="lbSlTypeProducts"
+                       FontSize="20"
+                       VerticalAlignment="Center">(x)</Label>
+                <Button x:Name="btDelete"
+                        Width="80"
+                        FontSize="16"
+                        Content="XÓA"
+                        ToolTip="Clear"
+                        Margin="30,0,0,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Click="btDelete_Click" />
+                <Label FontSize="20"
+                       Margin="100,0,0,0"
+                       VerticalAlignment="Center">Tổng thanh toán:</Label>
+                <Label x:Name="lbPriceEnd"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       FontStyle="Italic"
+                       VerticalAlignment="Center">xx.xxx.xxx</Label>
+                <Label FontSize="20"
+                       VerticalAlignment="Center">
+                    <Bold>
+                        <Underline>đ</Underline>
+                    </Bold>
+                </Label>
+                <Button x:Name="btBuy"
+                        Width="150"
+                        Height="37"
+                        FontSize="20"
+                        Margin="0,0,40,0"
+                        Content="Mua Hàng"
+                        ToolTip="Confirm"
+                        Background="{StaticResource Success}"
+                        Foreground="{StaticResource White}"
+                        BorderBrush="{x:Null}"
+                        HorizontalAlignment="Right"
+                        materialDesign:ButtonAssist.CornerRadius="8"
+                        Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
+                        Click="btBuy_Click">
+                </Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Page>

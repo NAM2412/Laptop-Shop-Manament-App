@@ -1,0 +1,166 @@
+﻿<Window x:Class="QuanLyCuaHangDienTu.View.Employee.Info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu.View.Employee"
+        mc:Ignorable="d"
+        Name="infemployee"
+        Title="THÔNG TIN NHÂN VIÊN" Height="500" Width="900"
+        
+         xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource WinAll}"
+        FontSize="14" 
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="../../ResourceXAML/IMG/Employee/Background.jpg"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarWindow Tag="{Binding Title, ElementName=infemployee}" Height="40" VerticalAlignment="Bottom">
+                </uc:ControlBarWindow>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"  Margin="20,40,0,20" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        TÊN NHÂN VIÊN
+                    </Label>
+                    <Label Name="lbTenNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        NGÀY SINH
+                    </Label>
+                    <Label Name="lbNgaySinhNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        ĐỊA CHỈ
+                    </Label>
+                    <Label Name="lbDiaChiNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        SỐ CMND
+                    </Label>
+                    <Label Name="lbCMNDNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        NGÀY VÀO LÀM
+                    </Label>
+                    <Label Name="lbNgayVaoLamNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="20,40,20,20" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        MÃ NHÂN VIÊN
+                    </Label>
+                    <Label Name="lbMaNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        GIỚI TÍNH
+                    </Label>
+                    <Label Name="lbGioiTinhNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        SỐ ĐIỆN THOẠI
+                    </Label>
+                    <Label Name="lbSDTNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        LƯƠNG
+                    </Label>
+                    <Label Name="lbLuongNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                    <Label Margin="10,10,0,0" FontSize="14" FontWeight="Bold">
+                        TÀI KHOẢN ĐĂNG NHẬP
+                    </Label>
+                    <Label Name="lbTaiKhoanNV" Margin="10,0,0,10" FontSize="14">
+                    </Label>
+                </StackPanel>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            CornerRadius="100"
+                            ToolTip="Avatar"
+                            Width="150"
+                            Height="150"
+                            Margin="0,30,0,10">
+                        <Border.Background>
+                            <ImageBrush x:Name="imgNV"/>
+                        </Border.Background>
+                    </Border>
+                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="10">
+                        <Label VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="5"
+                               FontSize="15"
+                               FontWeight="Bold">DANH SÁCH HÓA ĐƠN NHÂN VIÊN ĐÃ TẠO</Label>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <DataGrid AutoGenerateColumns="False"
+                                      Background="Transparent"
+                                      CanUserAddRows="False"
+                                      CanUserSortColumns="True"
+                                      HeadersVisibility="All"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      IsReadOnly="True"
+                                      Name="datagridHD">
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="DataGridRow">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Orange"/>
+                                            </Trigger>
+                                            <!--<Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="Coral"/>
+                                                </Trigger>-->
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã hóa đơn"
+                                                        Binding="{Binding MAHD}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Tên khách hàng"
+                                                        Binding="{Binding KHACHHANG.TENKH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Ngày tạo hóa đơn"
+                                                        Binding="{Binding NGAYHD}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Trị giá hóa đơn"
+                                                        Binding="{Binding SOTIENPHAITRA, StringFormat=N0}"
+                                                        IsReadOnly="False"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

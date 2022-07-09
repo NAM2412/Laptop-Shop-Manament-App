@@ -1,0 +1,282 @@
+﻿<Page x:Class="QuanLyCuaHangDienTu.View.Admin.CustomerPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu"
+        mc:Ignorable="d"
+        Name="customerwindow"
+        Title="DANH SÁCH KHÁCH HÀNG"
+        
+        xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource CustomerVM}">
+
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
+
+    <Border CornerRadius="25">
+        <!--<Border.Background>
+            <ImageBrush ImageSource="../../ResourceXAML/IMG/All/Background.jpg"></ImageBrush>
+        </Border.Background>-->
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <!--<uc:ControlBarCus Tag="{Binding Title, ElementName=customerwindow}"></uc:ControlBarCus>-->
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btBackward"
+                        Width="33"
+                        Height="33"
+                        Margin="45,0,0,0"
+                        ToolTip="Backward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseBack}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                        <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Foreground="#FF09308E">
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="180" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                    </Button>
+
+                    <Button x:Name="btForward"
+                        Width="33"
+                        Height="33"
+                        Margin="15,0,0,0"
+                        ToolTip="Forward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseForward}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        FlowDirection="RightToLeft">
+                        <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             Foreground="#FF09308E" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Label FontFamily="Sitka Subheading"
+                   FontSize="24"
+                   FontWeight="DemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   HorizontalContentAlignment="Center"
+                   Foreground="#FF351C75"
+                   Content="{Binding Title, RelativeSource={RelativeSource AncestorType=Page}}"></Label>
+
+
+            <Grid Grid.Row="1">
+                <!--Main-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--Search-->
+                    <materialDesign:Card Grid.Row="0" Margin="10" FontSize="15" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <WrapPanel Grid.Row="0">
+                                <!--<TextBox materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"
+                                         Margin="50 20 10 10" materialDesign:HintAssist.Hint="Mã khách hàng" MaxLength="10"
+                                         Text="{Binding TextMaKH, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Margin="50 20 10 10" materialDesign:HintAssist.Hint="Tên khách hàng"
+                                         Text="{Binding TextTenKH, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                <TextBox Margin="50 20 10 10" materialDesign:HintAssist.Hint="Số chứng minh"></TextBox>
+                                <TextBox Margin="50 20 10 10" materialDesign:HintAssist.Hint="Số điện thoại"></TextBox>
+                                <DatePicker Margin="50 10 10 10" Width="130" materialDesign:HintAssist.Hint="Ngày sinh" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <DatePicker Margin="50 10 10 10" Width="130" materialDesign:HintAssist.Hint="Ngày đăng kí" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <ComboBox Margin="50 20 10 10" materialDesign:HintAssist.Hint="Giới tính" 
+                                      ItemsSource="{Binding SP}" SelectedItem="{Binding SortSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBoxItem Content="Nam" />
+                                    <ComboBoxItem Content="Nữ" />
+                                </ComboBox>
+                                <ComboBox Margin="50 20 10 10" materialDesign:HintAssist.Hint="Doanh số" 
+                                      ItemsSource="{Binding SP}" SelectedItem="{Binding SortSP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBoxItem Content="Tăng dần" />
+                                    <ComboBoxItem Content="Giảm dần" />
+                                </ComboBox>-->
+                                <Button
+                                    Style="{DynamicResource MaterialDesignToolButton}"                       
+                                    VerticalAlignment="Bottom"
+                                    Height="40"
+                                    Width="40"
+                                    Margin="50,30,10,20">
+                                    <materialDesign:PackIcon Kind="AccountSearchOutline" Height="30" Width="30"/>
+                                </Button>
+                                <ComboBox materialDesign:HintAssist.HintOpacity=".26"
+                                          materialDesign:HintAssist.Hint="Tìm kiếm theo"
+                                          VerticalAlignment="Bottom"
+                                          Text="{Binding cbTimKiemKH}"
+                                          Margin="0,0,10,25">
+                                    <ComboBoxItem Content="Mã khách hàng"/>
+                                    <ComboBoxItem Content="Tên khách hàng"/>
+                                    <ComboBoxItem Content="Tài khoản khách hàng"/>
+                                    <ComboBoxItem Content="Số điện thoại"/>
+                                    <ComboBoxItem Content="Số CMND"/>
+                                </ComboBox>
+                                <TextBox
+                                         Width="250"
+                                    Margin="10,0,0,25"
+                                    VerticalAlignment="Bottom"
+                                    materialDesign:HintAssist.Hint="Nhập thông tin cần tìm kiếm"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderThickness="0"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    Text="{Binding TextTimKiemKH, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Text="Ngày đăng kí: " 
+                                           VerticalAlignment="Bottom"
+                                           Margin="30,0,0,30"
+                                           FontSize="20"/>
+                                <DatePicker Name="dtTuNgayKH"
+                                    Width="150"                  
+                                    Margin="30,0,0,23"   
+                                    VerticalAlignment="Bottom"
+                                    materialDesign:HintAssist.Hint="Từ ngày"
+                                    Text="{Binding TextTuNgayKH}"
+                                    SelectedDate="{Binding SelectedDateTimeStart, UpdateSourceTrigger=PropertyChanged}"               
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <DatePicker Name="dtDenNgayKH"               
+                                    Width="150"               
+                                    Margin="30,0,0,25"  
+                                    VerticalAlignment="Bottom"
+                                    materialDesign:HintAssist.Hint="Đến ngày"
+                                    Text="{Binding TextDenNgayKH}"
+                                    SelectedDate="{Binding SelectedDateTimeEnd, UpdateSourceTrigger=PropertyChanged}"                 
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            </WrapPanel>
+                            <!--<Grid Grid.Row="1">
+                                <Button HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0,10,40,20"
+                                Height="40"
+                                Width="130">
+                                    <DockPanel Width="150"
+                                       HorizontalAlignment="Center">
+                                        <Image Source="/IMG/ADMIN_TONG/Search.png"
+                                       Height="30"
+                                       Width="30"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="25,0,0,0"></Image>
+                                        <TextBlock Text="Tìm kiếm"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"></TextBlock>
+                                    </DockPanel>
+                                </Button>
+                            </Grid>-->
+                        </Grid>
+                    </materialDesign:Card>
+
+                    <Grid Grid.Row="1">
+                        <Border Background="#FF009688"
+                            Width="750"
+                            HorizontalAlignment="Left"
+                                Margin="10,0,0,0"
+                            CornerRadius="0,0,20,0"></Border>
+                    </Grid>
+
+                    <!--List-->
+                    <Grid Grid.Row="2" Margin="2" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="508*"/>
+                            <ColumnDefinition Width="65*"/>
+                            <ColumnDefinition Width="734*"/>
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Margin="0,0,0.4,0.4">
+                            <DataGrid x:Name="datagridKH" AutoGenerateColumns="False"
+                                      Background="Transparent"
+                                      CanUserAddRows="False"
+                                      CanUserSortColumns="True"
+                                      HeadersVisibility="All"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      IsReadOnly="True"
+                                      Margin="10"
+                                      ItemsSource="{Binding ListKH}" SelectedItem="{Binding SelectedItemKH, Mode=OneWayToSource}" MouseDoubleClick="DataGrid_MouseDoubleClick">
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="DataGridRow">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Orange"/>
+                                            </Trigger>
+                                            <!--<Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="Coral"/>
+                                                </Trigger>-->
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã khách hàng"
+                                                        Binding="{Binding MAKH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Tên khách hàng"
+                                                        Binding="{Binding TENKH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Tài khoản"
+                                                        Binding="{Binding TAIKHOANKH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Ngày sinh"
+                                                        Binding="{Binding NGAYSINH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Giới tính"
+                                                        Binding="{Binding GIOITINH}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Số CMND"
+                                                        Binding="{Binding SOCMND}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="SĐT"
+                                                        Binding="{Binding SDT}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Địa chỉ"
+                                                        Binding="{Binding DIACHI}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Ngày đăng kí"
+                                                        Binding="{Binding NGAYDANGKY}"
+                                                        IsReadOnly="False"/>
+                                    <DataGridTextColumn Header="Doanh số"
+                                                        Binding="{Binding DOANHSO, StringFormat=N0}"
+                                                        IsReadOnly="False"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Label HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               Margin="0,5,40,10" FontSize="18"
+                               FontWeight="Bold"
+                               Content="{Binding TongDoanhSo}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="662a8a2a0af5429abe0859ef5e2e68ae" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.CHITIETHOADON" Width="1.5" PointX="7.5" PointY="4.75" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.EMAIL" Width="1.5" PointX="5.25" PointY="9.25" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.HOADON" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.KHACHHANG" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.KHUYENMAI" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.LOAISP" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.NGUOIDUNG" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.NHANVIEN" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.NHASX" Width="1.5" PointX="3" PointY="15.25" />
+        <EntityTypeShape EntityType="QUANLYCUAHANGLAPTOPModel.SANPHAM" Width="1.5" PointX="5.25" PointY="13" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MAHD" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MASP" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MAKH_EMAIL" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MAKM" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MAKH" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MANV" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANKH_TAIKHOAN" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MALOAI" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_TAIKHOANNV_TAIKHOAN" />
+        <AssociationConnector Association="QUANLYCUAHANGLAPTOPModel.FK_MANSX" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

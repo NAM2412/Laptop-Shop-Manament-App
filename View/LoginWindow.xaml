@@ -1,0 +1,148 @@
+﻿<Window x:Class="QuanLyCuaHangDienTu.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:QuanLyCuaHangDienTu"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Name="loginwindow"
+        Title="Đăng nhập"
+        Height="500"
+        Width="900"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginVM}"
+        Style="{StaticResource WinAll}"
+        MouseDown="loginwindow_MouseDown">
+
+   
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="/ResourceXAML/IMG/Login_Register/Background_Login.png" />
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.85*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.ColumnSpan="2"
+                  Margin="351,0,0,-0.4">
+                <Label x:Name="lbLogin"
+                       Content="ĐĂNG NHẬP "
+                       FontSize="35"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       FontWeight="Bold"
+                       Margin="-283,23,0,0"
+                       FontFamily="Roboto" />
+
+                <Label x:Name="lbName"
+                       Content="Cửa Hàng Điện Tử"
+                       FontSize="25"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="-283,73,0,0"
+                       FontFamily="Roboto" />
+
+                <Label Background="Orange"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Height="4"
+                       Width="109"
+                       Margin="-277,116,0,0"></Label>
+            </Grid>
+
+            <Grid Grid.Column="0">
+                <TextBox x:Name="tbLogin"
+                         materialDesign:HintAssist.Hint="Tên đăng nhập"
+                         VerticalAlignment="Top"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="110,160,-65.2,0" 
+                         Text="{Binding UserName}"/>
+
+                <PasswordBox x:Name="pwbLogin"
+                             materialDesign:HintAssist.Hint="Mật khẩu"
+                             VerticalAlignment="Bottom"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             Margin="110,0,-65.2,224">
+                  
+                </PasswordBox>
+
+                <!--Ảnh logo-->
+                <Image Source="../ResourceXAML/IMG/Login_Register/Avatar.jpg"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Width="240"
+                       Height="240"
+                       Margin="589,108,-457.8,0"
+                       RenderTransformOrigin="1.787,0.613" />
+
+                <!--Ảnh tên đăng nhập-->
+                <Image Source="../ResourceXAML/IMG/Login_Register/User.png"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Width="40"
+                       Height="40"
+                       Margin="47,165,0,0"
+                       RenderTransformOrigin="1.787,0.613" />
+
+                <!--Ảnh tên mật khẩu-->
+                <Image Source="../ResourceXAML/IMG/Login_Register/Pass.png"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Width="40"
+                       Height="40"
+                       Margin="47,235,0,0" />
+
+                <Button x:Name="btLogin"
+                        Style="{StaticResource MaterialDesignFlatSecondaryLightButton}"
+                        materialDesign:ButtonProgressAssist.Value="-1"
+                        FontSize="22"
+                        Foreground="{StaticResource Success}"
+                        FontFamily="Sitka Subheading"
+                        Width="140"
+                        Height="35"
+                        Content="Đăng nhập"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=loginwindow}"
+                        Margin="61,325,199.8,0"/>
+
+                <Button x:Name="btExit"
+                        Style="{StaticResource MaterialDesignFlatSecondaryLightButton}"
+                        materialDesign:ButtonProgressAssist.Value="-1"
+                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                        FontSize="22"
+                        FontFamily="Sitka Subheading"
+                        Width="140"
+                        Height="35"
+                        Content="Thoát"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="232,325,28.8,0"
+                        Click="btExit_Click" />
+
+                <TextBlock x:Name="tbOthers"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Margin="110,395,121.8,0"
+                           TextAlignment="Center">
+            CHƯA CÓ TÀI KHOẢN?
+                    <LineBreak />
+                    <Hyperlink x:Name="hpRegister"
+                               Foreground="{StaticResource ThemeRedBrush}"
+                               FontWeight="Bold"
+                               Click="hpRegister_Click" >
+                        ĐĂNG KÝ
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,330 @@
+﻿<Page x:Class="QuanLyCuaHangDienTu.View.Customer.InforPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:QuanLyCuaHangDienTu.UserControlBar"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:QuanLyCuaHangDienTu"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Name="inforpage"
+      Title="THÔNG TIN CÁ NHÂN"
+      Style="{StaticResource PageAll}">
+
+    <Border CornerRadius="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+
+                <Button x:Name="btBackward"
+                        Width="33"
+                        Height="33"
+                        Margin="45,0,0,0"
+                        ToolTip="Backward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseBack}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+                    <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Foreground="#FF09308E">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform Angle="180" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                </Button>
+
+                <Button x:Name="btForward"
+                        Width="33"
+                        Height="33"
+                        Margin="15,0,0,0"
+                        ToolTip="Forward"
+                        BorderBrush="{x:Null}"
+                        Background="Yellow"
+                        HorizontalAlignment="Left"
+                        Command="{x:Static NavigationCommands.BrowseForward}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                        FlowDirection="RightToLeft">
+                    <materialDesign:PackIcon Kind="Play"
+                                             Width="20"
+                                             Height="20"
+                                             Foreground="#FF09308E" />
+                </Button>
+            </StackPanel>
+
+            <Label Grid.Row="0"
+                   Grid.ColumnSpan="3"
+                   FontFamily="Sitka Subheading"
+                   FontSize="25"
+                   FontWeight="DemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   HorizontalContentAlignment="Center"
+                   Foreground="#FF351C75"
+                   Content="{Binding Title, RelativeSource={RelativeSource AncestorType=Page}}"></Label>
+
+            <Border Grid.Column="0"
+                    Grid.Row="1"
+                    Width="200"
+                    Height="300"
+                    Margin="0,80,0,0"
+                    CornerRadius="25"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Border.Background>
+                    <ImageBrush x:Name="imgCustomer"
+                                ImageSource ="../../ResourceXAML/IMG/Customer/customer1.png"
+                                Stretch="UniformToFill" />
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Color="Black"
+                                      Direction="270"
+                                      ShadowDepth="1"
+                                      BlurRadius="10" />
+                </Border.Effect>
+            </Border>
+
+            <StackPanel  Grid.Row="1"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2">
+                <DockPanel>
+                    <WrapPanel Width="400"
+                               Margin="20,30,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="140"
+                               Foreground="Blue"
+                               FontFamily="Segoe UI">
+                            Họ và tên:
+                        </Label>
+                        <TextBlock x:Name="tbName"
+                                   FontSize="24"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Bottom">
+                    xxx xxxxx xxxx
+                        </TextBlock>
+                    </WrapPanel>
+
+                    <WrapPanel Width="350"
+                               Margin="10,30,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="150"
+                               Foreground="Blue"
+                               FontFamily="Segoe UI">
+                            Giới tính:
+                        </Label>
+                        <ComboBox x:Name="cbSex"
+                                  FontSize="24"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Bottom"
+                                  SelectedIndex="0"
+                                  IsEnabled="False">
+                            <ComboBoxItem Content="Nam" />
+                            <ComboBoxItem Content="Nữ" />
+                            <ComboBoxItem Content="Khác" />
+                        </ComboBox>
+                    </WrapPanel>
+                </DockPanel>
+
+                <DockPanel Margin="0,10,0,0">
+                    <WrapPanel Margin="20,30,50,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="140"
+                               Foreground="Blue"
+                               FontFamily="Segoe UI">
+                            Địa chỉ:
+                        </Label>
+                        <TextBox x:Name="tbAddress"
+                                 FontSize="24"
+                                 MinWidth="160"
+                                 Margin="10,0,0,0"
+                                 BorderThickness="0"
+                                 VerticalAlignment="Bottom"
+                                 TextWrapping="Wrap">
+                            xxx xxx xxx xxx xxx xxx xxx xxx
+                        </TextBox>
+                    </WrapPanel>
+                </DockPanel>
+
+                <DockPanel Margin="0,10,0,0">
+                    <WrapPanel Width="400"
+                               Margin="20,30,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="140"
+                               Foreground="Blue"
+                               FontFamily="Segoe UI">
+                            Số CMND:
+                        </Label>
+                        <TextBox x:Name="tbCMND"
+                                 FontSize="24"
+                                 MinWidth="100"
+                                 Margin="10,0,0,0"
+                                 BorderThickness="0"
+                                 VerticalAlignment="Bottom" PreviewTextInput="tbCMND_PreviewTextInput">
+                            xxx
+                        </TextBox>
+                    </WrapPanel>
+
+                    <WrapPanel Width="350"
+                               Margin="10,30,0,0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="160"
+                               Foreground="Blue"
+                               FontFamily="Segoe UI">
+                            Số điện thoại:
+                        </Label>
+                        <TextBox x:Name="tbSDT"
+                                 FontSize="24"
+                                 MinWidth="120"
+                                 Margin="10,0,0,0"
+                                 BorderThickness="0"
+                                 VerticalAlignment="Bottom"
+                                 PreviewTextInput="tbSDT_PreviewTextInput">
+                            xxx
+                        </TextBox>
+                    </WrapPanel>
+                </DockPanel>
+
+                <DockPanel Width="400"
+                           Margin="20,40,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left">
+                    <Label FontSize="24"
+                           VerticalAlignment="Center"
+                           Width="200"
+                           Foreground="#DB024F"
+                           FontFamily="Segoe UI">
+                        Tham gia từ ngày:
+                    </Label>
+                    <TextBlock x:Name="tbDatejoin"
+                               FontSize="24"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Bottom">
+                    xx/xx/xxxx
+                    </TextBlock>
+                </DockPanel>
+
+                <DockPanel Margin="0,10,0,0">
+                    <WrapPanel Width="400"
+                               Margin="20,30,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="270"
+                               Foreground="#DB024F"
+                               FontFamily="Segoe UI">
+                            Tổng sản phẩm đã mua:
+                        </Label>
+                        <TextBlock x:Name="tbSlsp"
+                                   FontSize="24"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Bottom">
+                    x
+                        </TextBlock>
+                    </WrapPanel>
+
+                    <WrapPanel Width="350"
+                               Margin="10,30,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        <Label FontSize="24"
+                               VerticalAlignment="Center"
+                               Width="90"
+                               Foreground="#DB024F"
+                               FontFamily="Segoe UI">
+                            Trị giá:
+                        </Label>
+
+                        <DockPanel>
+                            <TextBlock x:Name="tbTrigia"
+                                       FontSize="24"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Bottom">
+                    xx.xxx.xxx
+                            </TextBlock>
+                            <TextBlock FontSize="24"
+                                       VerticalAlignment="Bottom">
+                                <Underline>đ</Underline>
+                            </TextBlock>
+                        </DockPanel>
+                    </WrapPanel>
+                </DockPanel>
+
+                <WrapPanel Grid.Row="1"
+                           Grid.Column="1"
+                           Width="400"
+                           Margin="20,40,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left">
+                    <Label FontSize="24"
+                           VerticalAlignment="Center"
+                           Width="200"
+                           Foreground="#DB024F"
+                           FontFamily="Segoe UI">
+                        Loại khách hàng:
+                    </Label>
+                    <ComboBox x:Name="cbRank"
+                              FontSize="24"
+                              Margin="10,0,0,0"
+                              VerticalAlignment="Bottom"
+                              SelectedIndex="0"
+                              IsEnabled="False">
+                        <ComboBoxItem Content="Vàng" />
+                        <ComboBoxItem Content="Bạc" />
+                        <ComboBoxItem Content="Đồng" />
+
+                    </ComboBox>
+                </WrapPanel>
+
+                <Button x:Name="btSave"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="80"
+                        Height="38"
+                        Margin="0,30,80,30"
+                        FontSize="20"
+                        Content="Lưu"
+                        Style="{StaticResource MyGreenButtonStyle}"
+                        materialDesign:ButtonAssist.CornerRadius="4"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Click="btSave_Click">
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>
